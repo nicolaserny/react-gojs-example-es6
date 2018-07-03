@@ -2,6 +2,7 @@
     "name": "react-gojs-example-es6",
     "version": "0.1.0",
     "private": true,
+    "homepage": "https://nicolaserny.github.io/react-gojs-example-es6/",
     "dependencies": {
         "react": "^16.4.1",
         "react-dom": "^16.4.1",
