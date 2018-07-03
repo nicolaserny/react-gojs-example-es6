@@ -1,5 +1,8 @@
 .App {
     text-align: center;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
 }
 
 .App-logo {
@@ -12,6 +15,7 @@
     height: 150px;
     padding: 20px;
     color: white;
+    flex: 0 1 auto;
 }
 
 .App-title {
@@ -29,4 +33,13 @@
     to {
         transform: rotate(360deg);
     }
+}
+
+.centered-container {
+    width: 100%;
+    text-align: center;
+}
+
+.inline-element {
+    display: inline-block;
 }
