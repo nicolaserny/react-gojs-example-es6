@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import MyDiagram from './Components/MyDiagram';
-import AppButtons from './Components/AppButtons';
 import './App.css';
 
 class App extends Component {
@@ -12,7 +11,6 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo" />
                     <h1 className="App-title">react-gojs example in es6</h1>
                 </header>
-                <AppButtons />
                 <MyDiagram />
             </div>
         );

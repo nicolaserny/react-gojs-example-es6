@@ -34,12 +34,3 @@
         transform: rotate(360deg);
     }
 }
-
-.centered-container {
-    width: 100%;
-    text-align: center;
-}
-
-.inline-element {
-    display: inline-block;
-}
