@@ -20,10 +20,12 @@ class MyDiagram extends React.Component {
         this.removeNode = this.removeNode.bind(this);
         this.removeLink = this.removeLink.bind(this);
         this.addNode = this.addNode.bind(this);
+        this.updateNodeText = this.updateNodeText.bind(this);
+        this.onTextEdited = this.onTextEdited.bind(this);
         this.state = {
             selectedNodeKeys: [],
             model: {
-                nodeDataArray: [{ key: 'Alpha', color: 'lightblue' }],
+                nodeDataArray: [{ key: 'Alpha', label: 'Alpha', color: 'lightblue' }],
                 linkDataArray: []
             }
         };
@@ -54,11 +56,11 @@ class MyDiagram extends React.Component {
             ...this.state,
             model: {
                 nodeDataArray: [
-                    { key: 'Alpha', color: 'lightblue' },
-                    { key: 'Beta', color: 'orange' },
-                    { key: 'Gamma', color: 'lightgreen' },
-                    { key: 'Delta', color: 'pink' },
-                    { key: 'Omega', color: 'grey' }
+                    { key: 'Alpha', label: 'Alpha', color: 'lightblue' },
+                    { key: 'Beta', label: 'Beta', color: 'orange' },
+                    { key: 'Gamma', label: 'Gamma', color: 'lightgreen' },
+                    { key: 'Delta', label: 'Delta', color: 'pink' },
+                    { key: 'Omega', label: 'Omega', color: 'grey' }
                 ],
                 linkDataArray: [
                     { from: 'Alpha', to: 'Beta' },
@@ -103,7 +105,8 @@ class MyDiagram extends React.Component {
             allowZoom: false,
             allowSelect: true,
             autoScale: Diagram.Uniform,
-            contentAlignment: go.Spot.LeftCenter
+            contentAlignment: go.Spot.LeftCenter,
+            TextEdited: this.onTextEdited
         });
 
         myDiagram.toolManager.panningTool.isEnabled = false;
@@ -116,7 +119,7 @@ class MyDiagram extends React.Component {
                 selectionChanged: node => this.nodeSelectionHandler(node.key, node.isSelected)
             },
             $(go.Shape, 'RoundedRectangle', { strokeWidth: 0 }, new go.Binding('fill', 'color')),
-            $(go.TextBlock, { margin: 8 }, new go.Binding('text', 'key'))
+            $(go.TextBlock, { margin: 8, editable: true }, new go.Binding('text', 'label'))
         );
 
         return myDiagram;
@@ -146,7 +149,10 @@ class MyDiagram extends React.Component {
             ...this.state,
             model: {
                 ...this.state.model,
-                nodeDataArray: [...this.state.model.nodeDataArray, { key: newNodeId, color: getRandomColor() }],
+                nodeDataArray: [
+                    ...this.state.model.nodeDataArray,
+                    { key: newNodeId, label: newNodeId, color: getRandomColor() }
+                ],
                 linkDataArray:
                     linksToAdd.length > 0
                         ? [...this.state.model.linkDataArray].concat(linksToAdd)
@@ -192,6 +198,27 @@ class MyDiagram extends React.Component {
         };
     }
 
+    updateNodeText(nodeKey, text) {
+        const nodeToUpdateIndex = this.state.model.nodeDataArray.findIndex(node => node.key === nodeKey);
+        if (nodeToUpdateIndex === -1) {
+            return;
+        }
+        this.setState({
+            ...this.state,
+            model: {
+                ...this.state.model,
+                nodeDataArray: [
+                    ...this.state.model.nodeDataArray.slice(0, nodeToUpdateIndex),
+                    {
+                        ...this.state.model.nodeDataArray[nodeToUpdateIndex],
+                        label: text
+                    },
+                    ...this.state.model.nodeDataArray.slice(nodeToUpdateIndex + 1)
+                ]
+            }
+        });
+    }
+
     nodeSelectionHandler(nodeKey, isSelected) {
         if (isSelected) {
             this.setState({
@@ -210,6 +237,17 @@ class MyDiagram extends React.Component {
                     ...this.state.selectedNodeKeys.slice(nodeIndexToRemove + 1)
                 ]
             });
+        }
+    }
+
+    onTextEdited(e) {
+        const tb = e.subject;
+        if (tb === null) {
+            return;
+        }
+        const node = tb.part;
+        if (node instanceof go.Node) {
+            this.updateNodeText(node.key, tb.text);
         }
     }
 }
