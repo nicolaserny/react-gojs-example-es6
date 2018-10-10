@@ -6,7 +6,7 @@
     "dependencies": {
         "react": "^16.5.2",
         "react-dom": "^16.5.2",
-        "react-gojs": "^1.3.3",
+        "react-gojs": "^1.4.0",
         "react-scripts": "2.0.4"
     },
     "scripts": {
