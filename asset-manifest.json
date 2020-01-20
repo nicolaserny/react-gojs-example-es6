@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/react-gojs-example-es6/static/css/main.98973bd3.chunk.css",
+    "main.js": "/react-gojs-example-es6/static/js/main.256df3a2.chunk.js",
+    "main.js.map": "/react-gojs-example-es6/static/js/main.256df3a2.chunk.js.map",
+    "runtime~main.js": "/react-gojs-example-es6/static/js/runtime~main.6f01a942.js",
+    "runtime~main.js.map": "/react-gojs-example-es6/static/js/runtime~main.6f01a942.js.map",
+    "static/js/2.fcaaa512.chunk.js": "/react-gojs-example-es6/static/js/2.fcaaa512.chunk.js",
+    "static/js/2.fcaaa512.chunk.js.map": "/react-gojs-example-es6/static/js/2.fcaaa512.chunk.js.map",
+    "index.html": "/react-gojs-example-es6/index.html",
+    "precache-manifest.bf3a1d079b4713e2784d4f90f83ec6ec.js": "/react-gojs-example-es6/precache-manifest.bf3a1d079b4713e2784d4f90f83ec6ec.js",
+    "service-worker.js": "/react-gojs-example-es6/service-worker.js",
+    "static/css/main.98973bd3.chunk.css.map": "/react-gojs-example-es6/static/css/main.98973bd3.chunk.css.map",
+    "static/media/logo.svg": "/react-gojs-example-es6/static/media/logo.5d5d9eef.svg"
+  }
+}
